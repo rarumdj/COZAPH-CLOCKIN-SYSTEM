@@ -1,0 +1,24 @@
+.rt-none {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.hideCc {
+    display: none;
+}
+
+.hideBcc {
+    display: none;
+}
+
+.hidetime {
+    display: none;
+}
+
+.rb-none {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.bootstrap-tagsinput {
+    min-height: 54px;
+}
