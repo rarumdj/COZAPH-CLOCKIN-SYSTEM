@@ -18,6 +18,7 @@ class RegisterWorker extends Component
     public $b_day;
     // public $image;
     public $user_id;
+    public $success = '';
 
 
 
@@ -47,7 +48,6 @@ class RegisterWorker extends Component
             $newWorker->phone = $this->phone;
             $newWorker->m_status = $this->m_status;
             $newWorker->b_day = $this->b_day;
-            // $newWorker->image = $this->image;
             $newWorker->user_id = $this->user_id;
             $newWorker->save();
             // session()->flash('message', 'Worker has been added successfully');
@@ -65,12 +65,13 @@ class RegisterWorker extends Component
             $this->user_id = str_pad($max_uid + 1, 3, "0", STR_PAD_LEFT);
             $this->department = 'Avalanche';
             $this->m_status = 'Single';
+            $this->success = $newWorker;
         } else {
             $this->emit('alert', ['type' => 'error', 'message' => 'Worker already exists.']);
         }
     }
     public function render()
     {
-        return view('livewire.register-worker')->layout('layouts.base');
+        return view('livewire.register-worker', ['newWorker' => $this->success])->layout('layouts.base');
     }
 }

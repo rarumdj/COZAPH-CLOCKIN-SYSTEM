@@ -1,4 +1,5 @@
 @section('title') {{'Register Worker'}} @endsection
+
 <div class="page-content-wrapper-inner">
     <div class="viewport-header">
         <nav aria-label="breadcrumb">
@@ -9,6 +10,26 @@
         </nav>
     </div>
     <div class="content-viewport">
+
+        @if($newWorker)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="align-items-center justify-content-between d-flex flex-column">
+                    <img src="{{ asset('assets/images/checked.png') }}" alt="">
+                    <h5 class="mt-3">Registration success</h5>
+                    <h6 class="mt-4">
+                        Dear John,
+                    </h6>
+                    <p>Your registration was successful, here is your clockin ID
+                        <strong>{{ $newWorker->user_id }}</strong>. A copy of
+                        your ID was also sent to
+                        your mail. </p>
+                    <p>Thanks, Regards</p>
+                </div>
+            </div>
+        </div>
+
+        @else
 
         <div class="row">
             <div class="col-lg-12">
@@ -130,18 +151,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="row showcase_row_area">
-                                            <div class="col-md-3 showcase_text_area">
-                                                <label>Worker Image</label>
-                                            </div>
-                                            <div class="col-md-9 showcase_content_area">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" wire:model="image" />
-                                                    <label class="custom-file-label" for="customFile">Choose
-                                                        file</label>
-                                                </div>
-                                            </div>
-                                        </div> --}}
+
                                         <div class="form-group row showcase_row_area">
                                             <div class="col-md-3 showcase_text_area">
                                                 <label>Reg No.</label>
@@ -169,6 +179,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @push('script')
