@@ -55,6 +55,7 @@ class RegisterWorker extends Component
             $body = [
                 'name' => $this->firstname . ' ' . $this->lastname,
                 'user_id' => $this->user_id,
+                'type' => 'worker',
             ];
 
             Mail::to($this->email)->queue(new Registration($body));

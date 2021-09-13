@@ -1,3 +1,4 @@
+@section('title') {{'Edit Worker'}} @endsection
 <div class="page-content-wrapper-inner">
     <div class="viewport-header">
         <nav aria-label="breadcrumb">

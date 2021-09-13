@@ -138,7 +138,11 @@
                 <table class="table table-hover" width="100%">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" wire:model="selectPage"></th>
+                            <th><input type="checkbox" wire:model="selectPage" @if (!is_null($attendances) &&
+                                    $attendances->isEmpty())
+                                disabled
+                                @endif>
+                            </th>
                             <th>Worker</th>
                             <th>Reg ID</th>
                             <th>Clocked in</th>

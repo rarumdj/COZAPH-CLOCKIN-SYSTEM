@@ -1,3 +1,4 @@
+@section('title') {{'Workers'}} @endsection
 <div class="page-content-wrapper-inner">
     <div class="viewport-header">
         <nav aria-label="breadcrumb">
@@ -137,7 +138,12 @@
                                 <table class="table table-hover" width="100%">
                                     <thead>
                                         <tr>
-                                            <th><input type="checkbox" wire:model="selectPage"></th>
+                                            <th>
+                                                <input type="checkbox" wire:model="selectPage" @if(!is_null($workers) &&
+                                                    $workers->isEmpty())
+                                                disabled
+                                                @endif>
+                                            </th>
                                             <th>Reg ID</th>
                                             <th>Full Name</th>
                                             <th>Email</th>

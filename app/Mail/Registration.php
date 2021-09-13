@@ -29,6 +29,10 @@ class Registration extends Mailable
      */
     public function build()
     {
-        return $this->subject('COZAPH Workforce Registration')->markdown('emails.registration-mail', ['body' => $this->body]);
+        if ($this->body['type'] == 'worker') {
+            return $this->subject('COZAPH Workforce Registration')->markdown('emails.registration-mail', ['body' => $this->body]);
+        } elseif ($this->body['type'] == 'admin') {
+            return $this->subject('COZAPH Workforce Admin')->markdown('emails.admin-mail', ['body' => $this->body]);
+        }
     }
 }

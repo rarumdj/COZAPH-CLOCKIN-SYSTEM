@@ -38,7 +38,7 @@ class ClockoutComponent extends Component
             ->when($this->selectedStatus, function ($query) {
                 $query->where('status', $this->selectedStatus);
             })
-            ->search(trim($this->search));
+            ->search(trim($this->search))->where('created_at', 'LIKE', '%' . Carbon::now()->format('Y-m-d') . '%');
     }
 
     public function updatedSelectPage($value)
@@ -125,21 +125,8 @@ class ClockoutComponent extends Component
 
     public function render()
     {
-        $co_status = '';
-        $ci_status = null;
 
-        foreach ($this->attendances as $attendance) {
-            if ($attendance->co_status === 0) {
-                $co_status = 'Clockout';
-            } else if ($attendance->co_status === 1) {
-                $co_status = 'Undo';
-            }
-            if ($attendance->clockin != '') {
-                $ci_status = 1;
-            }
-        }
 
-        return view('livewire.clockout-component', ['attendances' => $this->attendances, 'co_status' => $co_status, 'ci_status' => $ci_status])->layout('layouts.base');
+        return view('livewire.clockout-component', ['attendances' => $this->attendances])->layout('layouts.base');
     }
 }
-// ]

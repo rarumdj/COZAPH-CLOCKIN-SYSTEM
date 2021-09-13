@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>COZA - Web App</title>
+    <title>COZAPH - @yield('title')</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/mdi/css/materialdesignicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.addons.css') }}" />
@@ -22,6 +22,12 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
+    {{-- icons --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/logo.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.svg') }}" sizes="16x16">
+    <link rel="mask-icon" href="{{ asset('assets/images/logo.svg') }}" color="#5bbad5">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo.svg') }}">
     @yield('styles')
     @livewireStyles
 </head>
@@ -207,18 +213,23 @@
     <div class="page-body">
         <!-- partial:partials/_sidebar.html -->
         <div class="sidebar">
+
+            @if (Route::has('login'))
+            @auth
+            @if(Auth::user())
             <div class="user-profile">
                 <div class="display-avatar animated-avatar">
                     <img class="profile-img img-lg rounded-circle"
                         src="{{ asset('assets/images/profile/male/image_1.png') }}" alt="profile image">
                 </div>
                 <div class="info-wrapper">
-                    {{-- <p class="user-name">Hello</p> --}}
-                    {{-- <h6 class="display-income">$3,400,00</h6> --}}
+                    <p class="user-name">Hello</p>
+                    <p class="display-income">{{ Auth::user()->name }}</p>
                 </div>
             </div>
             <ul class="navigation-menu">
                 <li class="nav-category-divider">MAIN</li>
+
                 <li>
                     <a href="/">
                         <span class="link-title">Dashboard</span>
@@ -226,7 +237,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('worker.register') }}">
+                    <a href="{{ route('worker.view') }}">
                         <span class="link-title">Workforce</span>
                         <i class="mdi mdi-clipboard-outline link-icon"></i>
                     </a>
@@ -252,14 +263,45 @@
                         <i class="mdi mdi-email-outline link-icon"></i>
                     </a>
                 </li>
-                {{-- <li class="nav-category-divider">DOCS</li>
                 <li>
-                    <a href="#">
-                        <span class="link-title">Documentation</span>
-                        <i class="mdi mdi-asterisk link-icon"></i>
+                    <a href="{{ route('admin.register') }}">
+                        <span class="link-title">New Admin</span>
+                        <i class="mdi mdi-account-plus link-icon"></i>
                     </a>
-                </li> --}}
+
+                </li>
+                <li class="nav-category-divider">Logout</li>
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <span class="link-title">Logout</span>
+                        <i class="mdi mdi-logout link-icon"></i>
+                    </a>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    </form>
+                </li>
             </ul>
+
+            @endif
+            @else
+            <ul class="navigation-menu">
+                <li class="nav-category-divider">MAIN</li>
+
+                <li>
+                    <a href="{{ route('worker.register') }}">
+                        <span class="link-title">Workforce</span>
+                        <i class="mdi mdi-clipboard-outline link-icon"></i>
+                    </a>
+                </li>
+            </ul>
+            @endauth
+            @endif
+
+
+
+
+
         </div>
         <!-- partial -->
         <div class="page-content-wrapper">

@@ -1,3 +1,4 @@
+@section('title') {{'Clockout Worker'}} @endsection
 <div class="page-content-wrapper-inner">
     <div class="viewport-header">
         <nav aria-label="breadcrumb">
@@ -150,7 +151,12 @@
                                 <table class="table table-hover" width="100%">
                                     <thead>
                                         <tr>
-                                            <th><input type="checkbox" wire:model="selectPage"></th>
+                                            <th>
+                                                <input type="checkbox" wire:model="selectPage"
+                                                    @if(!is_null($attendances) && $attendances->isEmpty())
+                                                disabled
+                                                @endif>
+                                            </th>
                                             <th>Worker</th>
                                             <th>Reg ID</th>
                                             <th>Clocked in</th>
@@ -181,8 +187,15 @@
                                             <td>{{ $attendance->clockout }}</td>
                                             <td>
                                                 <button wire:click="clockoutSingle({{ $attendance->id }})"
-                                                    class="btn btn-xs btn-primary" @if (is_null($ci_status)) disabled
-                                                    @endif>{{ $co_status }}</button>
+                                                    class="btn btn-xs btn-primary" @if ($attendance->clockin == ''))
+                                                    disabled
+                                                    @endif>
+
+                                                    @if ($attendance->co_status == 0)
+                                                    Clockout
+                                                    @else
+                                                    Undo
+                                                    @endif</button>
                                             </td>
                                             <td>
                                                 <button wire:click="permitSingle({{ $attendance->id }})"
