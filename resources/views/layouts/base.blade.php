@@ -36,9 +36,9 @@
     <!-- partial:partials/_header.html -->
     <nav class="t-header">
         <div class="t-header-brand-wrapper">
-            <a href="index.html">
-                <img class="logo" src="{{ asset('assets/images/logo.svg') }}" alt="">
-                <img class="logo-mini" src="{{ asset('assets/images/logo_mini.svg') }}" alt="">
+            <a href="/">
+                <img class="logo" style="width: 50px" src="{{ asset('assets/images/logo.svg') }}" alt="">
+                <img class="logo-mini" style="width: 50px" src="{{ asset('assets/images/logo_mini.svg') }}" alt="">
             </a>
             <button class="t-header-toggler t-header-desk-toggler d-none d-lg-block">
                 <svg class="logo" viewBox="0 0 200 200">

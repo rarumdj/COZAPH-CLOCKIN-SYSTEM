@@ -125,8 +125,6 @@ class ClockoutComponent extends Component
 
     public function render()
     {
-
-
         return view('livewire.clockout-component', ['attendances' => $this->attendances])->layout('layouts.base');
     }
 }

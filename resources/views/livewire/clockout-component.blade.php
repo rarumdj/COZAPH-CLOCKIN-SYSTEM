@@ -183,8 +183,10 @@
                                                     {{ $attendance->department }}</span>
                                             </td>
                                             <td>{{ $attendance->user_id }}</td>
-                                            <td>{{ $attendance->clockin }}</td>
-                                            <td>{{ $attendance->clockout }}</td>
+                                            <td>{{ $attendance->clockin ? date('h:i a', strtotime($attendance->clockin)) : '' }}
+                                            </td>
+                                            <td>{{ $attendance->clockout ? date('h:i a', strtotime($attendance->clockout)) : ''}}
+                                            </td>
                                             <td>
                                                 <button wire:click="clockoutSingle({{ $attendance->id }})"
                                                     class="btn btn-xs btn-primary" @if ($attendance->clockin == ''))

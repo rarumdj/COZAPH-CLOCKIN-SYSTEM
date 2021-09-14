@@ -40,8 +40,8 @@ class ClockinComponent extends Component
                         $body = [
                             'type' => 'clockin',
                             'name' => $clockin->fullname,
-                            'time' => $clockin->clockin,
-                            'calltime' => $clockin->calltime,
+                            'time' => date('h:i a', strtotime($clockin->clockin)),
+                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
                             'status' => 'Early',
                             'date' => Carbon::now()->format('Y-m-d'),
 
@@ -64,8 +64,8 @@ class ClockinComponent extends Component
                         $body = [
                             'type' => 'clockin',
                             'name' => $clockin->fullname,
-                            'time' => $clockin->clockin,
-                            'calltime' => $clockin->calltime,
+                            'time' => date('h:i a', strtotime($clockin->clockin)),
+                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
                             'status' => 'Late',
                             'date' => Carbon::now()->format('Y-m-d'),
 
@@ -91,8 +91,8 @@ class ClockinComponent extends Component
                         $body = [
                             'type' => 'clockin',
                             'name' => $clockin->fullname,
-                            'time' => $clockin->clockin,
-                            'calltime' => $clockin->calltime,
+                            'time' => date('h:i a', strtotime($clockin->clockin)),
+                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
                             'status' => 'Early',
                             'date' => Carbon::now()->format('Y-m-d'),
 
@@ -116,8 +116,8 @@ class ClockinComponent extends Component
                         $body = [
                             'type' => 'clockin',
                             'name' => $clockin->fullname,
-                            'time' => $clockin->clockin,
-                            'calltime' => $clockin->calltime,
+                            'time' => date('h:i a', strtotime($clockin->clockin)),
+                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
                             'status' => 'Late',
                             'date' => Carbon::now()->format('Y-m-d'),
 
