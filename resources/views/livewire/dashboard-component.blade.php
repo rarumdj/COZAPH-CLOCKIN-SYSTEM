@@ -64,10 +64,11 @@
         </div>
     </div>
 </div>
+
 @push('script')
 <script>
-    //     window.livewire.on('paginate', () => {
-//     console.log('ss');
-// });
+    window.livewire.on('alert', param => {
+    toastr[param['type']](param['message']);
+});
 </script>
 @endpush

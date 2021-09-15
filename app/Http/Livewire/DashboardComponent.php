@@ -48,28 +48,38 @@ class DashboardComponent extends Component
         $this->fill(request()->only('date'));
         if (!$this->date && !is_null($this->oldDate)) {
             $body = [
+                'type' => 'dashboard',
                 'co_members' => $this->co_members,
                 'co_early' => $this->co_early,
+                'link_early' => 'www.attendance/earlyreport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
                 'co_late' => $this->co_late,
+                'link_late' => 'www.attendance/latereport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
                 'co_absent' => $this->co_absent,
+                'absent_early' => 'www.attendance/absentreport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
                 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
             ];
 
             Mail::to('pstoyewolesoetan@gmail.com')
                 ->cc('davemoses3@gmail.com')
                 ->queue(new SendReport($body));
+            $this->emit('alert', ['type' => 'success', 'message' => 'Mail sent successfully.']);
         } else if ($this->date) {
             $body = [
+                'type' => 'dashboard',
                 'co_members' => $this->co_members,
                 'co_early' => $this->co_early,
+                'link_early' => 'www.attendance/earlyreport/' . $this->date,
                 'co_late' => $this->co_late,
+                'link_late' => 'www.attendance/latereport/' . $this->date,
                 'co_absent' => $this->co_absent,
+                'link_absent' => 'www.attendance/absentreport/' . $this->date,
                 'date' => $this->date,
             ];
 
             Mail::to('pstoyewolesoetan@gmail.com')
                 ->cc('davemoses3@gmail.com')
                 ->queue(new SendReport($body));
+            $this->emit('alert', ['type' => 'success', 'message' => 'Mail sent successfully.']);
         }
     }
     public function render()

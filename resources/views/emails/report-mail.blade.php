@@ -12,16 +12,19 @@
 <div class="p-5 text-center">
     @component('mail::panel')
     <p>Present (Early): {{ $body['co_early'] }}</p>
+    <a href="{{ $body['link_early'] }}">Download</a>
     @endcomponent
 </div>
 <div class="p-5 text-center">
     @component('mail::panel')
     <p>Present (Late): {{ $body['co_late'] }}</p>
+    <a href="{{ $body['link_late'] }}">Download</a>
     @endcomponent
 </div>
 <div class="p-5 text-center">
     @component('mail::panel')
     <p>Absent: {{ $body['co_absent'] }}</p>
+    <a href="{{ $body['link_absent'] }}">Download</a>
     @endcomponent
 </div>
 Thanks and Regards!<br>

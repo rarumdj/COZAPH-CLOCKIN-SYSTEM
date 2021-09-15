@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DownloadReportController;
 use App\Http\Livewire\ChangeDateComponent;
 use App\Http\Livewire\ClockinComponent;
 use App\Http\Livewire\ClockoutComponent;
@@ -32,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('worker/register/', RegisterWorker::class)->name('worker.register');
+Route::get('attendance/earlyreport/{date}', [DownloadReportController::class, 'downloadEarly']);
+Route::get('attendance/latereport/{date}', [DownloadReportController::class, 'downloadLate']);
+Route::get('attendance/absentyreport/{date}', [DownloadReportController::class, 'downloadAbsent']);
 
 
 // for admin

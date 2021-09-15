@@ -63,3 +63,11 @@
         </div>
     </div>
 </div>
+
+@push('script')
+<script>
+    window.livewire.on('alert', param => {
+    toastr[param['type']](param['message']);
+});
+</script>
+@endpush
