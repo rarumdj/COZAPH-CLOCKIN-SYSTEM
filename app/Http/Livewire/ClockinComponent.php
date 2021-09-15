@@ -140,7 +140,7 @@ class ClockinComponent extends Component
         $allWorker = Attendance::where('created_at', 'LIKE', '%' . '2021-09-03' . '%')->pluck('user_id')->map(fn ($item) => (string) $item)->toArray();
         $check = Worker::select('user_id', 'firstname', 'lastname', 'email', 'department', 'phone')->whereNotIn('user_id', $allWorker)->get();
         if (!is_null($this->calltime)) {
-            if (!$check->empty()) {
+            if (!$check->isEmpty()) {
                 foreach ($check as $checks) {
                     $clockin = new Attendance;
                     $clockin->user_id = $checks->user_id;
