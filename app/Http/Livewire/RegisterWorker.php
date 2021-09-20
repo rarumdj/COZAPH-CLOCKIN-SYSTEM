@@ -24,16 +24,22 @@ class RegisterWorker extends Component
 
     public function mount()
     {
-        $worker = Worker::all()->count();
-        if ($worker < 1) {
-            $this->user_id = '001';
-        } else {
-            $max_uid = Worker::max('user_id');
-            $this->user_id = str_pad($max_uid + 1, 3, "0", STR_PAD_LEFT);
-        }
-        $this->user_id = $this->user_id;
+
         $this->department = 'Avalanche';
         $this->m_status = 'Single';
+    }
+
+    public function getUserIdProperty()
+    {
+
+        $worker = Worker::all()->count();
+        if ($worker < 1) {
+            return '001';
+        } else {
+            $max_uid = Worker::max('user_id');
+            return str_pad($max_uid + 1, 3, "0", STR_PAD_LEFT);
+        }
+        // $this->user_id = $this->user_id;
     }
 
     public function storeWorker()
@@ -48,21 +54,21 @@ class RegisterWorker extends Component
             $newWorker->phone = $this->phone;
             $newWorker->m_status = $this->m_status;
             $newWorker->b_day = $this->b_day;
-            $newWorker->user_id = $this->user_id;
+            $newWorker->user_id = $this->userId;
             $newWorker->save();
             // session()->flash('message', 'Worker has been added successfully');
             $this->emit('alert', ['type' => 'success', 'message' => 'Worker has been added successfully.']);
             $body = [
-                'name' => $this->firstname . ' ' . $this->lastname,
-                'user_id' => $this->user_id,
+                'name' => $newWorker->firstname . ' ' . $newWorker->lastname,
+                'user_id' => $newWorker->user_id,
                 'type' => 'worker',
             ];
 
             Mail::to($this->email)->queue(new Registration($body));
 
             $this->reset();
-            $max_uid = Worker::max('user_id');
-            $this->user_id = str_pad($max_uid + 1, 3, "0", STR_PAD_LEFT);
+            // $max_uid = Worker::max('user_id');
+            // $this->user_id = str_pad($max_uid + 1, 3, "0", STR_PAD_LEFT);
             $this->department = 'Avalanche';
             $this->m_status = 'Single';
             $this->success = $newWorker;

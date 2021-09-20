@@ -49,11 +49,11 @@ class DatedDashboardComponent extends Component
                 'type' => 'dashboard',
                 'co_members' => $this->co_members,
                 'co_early' => $this->co_early,
-                'link_early' => 'www.attendance/earlyreport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
+                'link_early' => url('/attendance/earlyreport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')),
                 'co_late' => $this->co_late,
-                'link_late' => 'www.attendance/latereport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
+                'link_late' => url('/attendance/latereport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')),
                 'co_absent' => $this->co_absent,
-                'absent_early' => 'www.attendance/absentreport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
+                'link_absent' => url('/attendance/absentreport/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')),
                 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
             ];
 
@@ -66,11 +66,11 @@ class DatedDashboardComponent extends Component
                 'type' => 'dashboard',
                 'co_members' => $this->co_members,
                 'co_early' => $this->co_early,
-                'link_early' => 'www.attendance/earlyreport/' . $this->date,
+                'link_early' => url('/attendance/earlyreport/' . $this->date),
                 'co_late' => $this->co_late,
-                'link_late' => 'www.attendance/latereport/' . $this->date,
+                'link_late' =>  url('/attendance/latereport/' . $this->date),
                 'co_absent' => $this->co_absent,
-                'link_absent' => 'www.attendance/absentreport/' . $this->date,
+                'link_absent' => url('/attendance/absentreport/' . $this->date),
                 'date' => $this->date,
             ];
 

@@ -18,7 +18,7 @@
                     <img src="{{ asset('assets/images/checked.png') }}" alt="">
                     <h5 class="mt-3">Registration success</h5>
                     <h6 class="mt-4">
-                        Dear John,
+                        Dear {{ $newWorker->firstname.' '.$newWorker->lastname }},
                     </h6>
                     <p>Your registration was successful, here is your clockin ID
                         <strong>{{ $newWorker->user_id }}</strong>. A copy of
@@ -152,7 +152,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row showcase_row_area">
+                                        {{-- <div class="form-group row showcase_row_area">
                                             <div class="col-md-3 showcase_text_area">
                                                 <label>Reg No.</label>
                                             </div>
@@ -160,7 +160,7 @@
                                                 <input type="text" class="form-control" id="inputType3"
                                                     placeholder="001" wire:model="user_id" disabled />
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group row showcase_row_area">
                                             <div class="col-md-3 showcase_text_area">
                                                 <label></label>
