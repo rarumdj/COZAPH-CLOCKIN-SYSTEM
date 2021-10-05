@@ -16,7 +16,6 @@ class RegisterWorker extends Component
     public $phone;
     public $m_status;
     public $b_day;
-    // public $image;
     public $user_id;
     public $success = '';
 

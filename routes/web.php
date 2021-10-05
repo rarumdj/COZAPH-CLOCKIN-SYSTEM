@@ -43,9 +43,8 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/', DashboardComponent::class);
     Route::get('/', DatedDashboardComponent::class)->name('search.date');
     Route::get('workers/', ViewWorkersComponent::class)->name('worker.view');
-    Route::get('workers/edit/{user_id}', EditWorkersComponent::class)->name('worker.edit');
+    Route::get('worker/edit/{user_id}', EditWorkersComponent::class)->name('worker.edit');
     Route::get('worker/clockin/', ClockinComponent::class)->name('worker.clockin');
-    Route::get('worker/clockout/', ClockoutComponent::class)->name('worker.clockout');
     Route::get('worker/clockout/', ClockoutComponent::class)->name('worker.clockout');
     Route::get('mail-dashborad/', MailDashboardComponent::class)->name('mail.dashboard');
     Route::get('mail-dashborad/mailer/', MailerComponent::class)->name('mail.mailer');
