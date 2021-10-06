@@ -93,7 +93,7 @@
                                                     <option value="Partnership">Partnership</option>
                                                     <option value="Pastoral Care">Pastoral Care</option>
                                                     <option value="Public Relations">Public Relations</option>
-                                                    <option value="Quality Control">Quality Control</option>
+                                                    <option value="M & E">M & E</option>
                                                     <option value="Sound">Sound</option>
                                                     <option value="Traffic & Security">Traffic & Security</option>
                                                     <option value="Ushering">Ushering</option>
