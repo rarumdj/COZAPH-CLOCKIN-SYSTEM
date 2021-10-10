@@ -95,6 +95,8 @@
                                                     <option value="Public Relations">Public Relations</option>
                                                     <option value="M & E">M & E</option>
                                                     <option value="Sound">Sound</option>
+                                                    <option value="Outreach">Outreach</option>
+                                                    <option value="New Convert">New Convert</option>
                                                     <option value="Traffic & Security">Traffic & Security</option>
                                                     <option value="Ushering">Ushering</option>
                                                     <option value="Witty">Witty</option>
