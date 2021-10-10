@@ -80,6 +80,7 @@
                                             </div>
                                             <div class="col-md-9 showcase_content_area">
                                                 <select class="form-control" wire:model="department" required>
+                                                    <option value="Admin">Admin</option>
                                                     <option value="Avalanche">Avalanche</option>
                                                     <option value="Altar Management">Altar Management</option>
                                                     <option value="COZA Care">COZA Care</option>
