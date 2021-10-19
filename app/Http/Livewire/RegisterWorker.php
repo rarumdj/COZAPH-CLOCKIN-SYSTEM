@@ -43,7 +43,7 @@ class RegisterWorker extends Component
 
     public function storeWorker()
     {
-        $exWorker = Worker::where(['firstname' => $this->firstname, 'email' => $this->email])->first();
+        $exWorker = Worker::where(['email' => $this->email])->first();
         if (!$exWorker) {
             $newWorker = new Worker;
             $newWorker->firstname = $this->firstname;
