@@ -1,6 +1,6 @@
 @component('mail::message')
 <div class="mb-5 w-100 text-center">
-    <h1>Good Day sir,</h1>
+    <h1>Celebrate you greatly Pastor,</h1>
     <p>Please find below details of service report from {{ $body['date'] }}.</p>
 </div>
 
