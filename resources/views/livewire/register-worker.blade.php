@@ -23,7 +23,8 @@
                     <p>Your registration was successful, here is your clockin ID
                         <strong>{{ $newWorker->user_id }}</strong>. A copy of
                         your ID was also sent to
-                        your mail. </p>
+                        your mail.
+                    </p>
                     <p>Thanks, Regards</p>
                 </div>
             </div>
