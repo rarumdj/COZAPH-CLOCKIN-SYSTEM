@@ -30,7 +30,7 @@ class DownloadReportController extends Controller
 
     public function downloadDeptReport(Request $request, $department, $date)
     {
-        $attendance = Attendance::where(['department' => $department])->where('created_at', 'LIKE', '%' . $date . '%')->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+        $attendance = Attendance::where('department', $department)->where('created_at', 'LIKE', '%' . $date . '%')->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         return (new AttendancesExport($attendance))->download('attendance' . time()  . '.xlsx');
     }
 }
