@@ -60,6 +60,7 @@
                                             <div class="col-md-9 showcase_content_area">
                                                 <select class="form-control" wire:model="department" required>
                                                     <option value="Avalanche">Avalanche</option>
+                                                    <option value="Admin">Admin</option>
                                                     <option value="Altar Management">Altar Management</option>
                                                     <option value="COZA Care">COZA Care</option>
                                                     <option value="COZA Transfer Service">COZA Transfer Service</option>
@@ -72,8 +73,10 @@
                                                     <option value="Partnership">Partnership</option>
                                                     <option value="Pastoral Care">Pastoral Care</option>
                                                     <option value="Public Relations">Public Relations</option>
-                                                    <option value="Quality Control">Quality Control</option>
+                                                    <option value="M & E">M & E</option>
                                                     <option value="Sound">Sound</option>
+                                                    <option value="Outreach">Outreach</option>
+                                                    <option value="New Convert">New Convert</option>
                                                     <option value="Traffic & Security">Traffic & Security</option>
                                                     <option value="Ushering">Ushering</option>
                                                     <option value="Witty">Witty</option>

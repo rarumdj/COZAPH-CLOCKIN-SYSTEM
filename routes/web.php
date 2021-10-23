@@ -36,6 +36,7 @@ Route::get('worker/register/', RegisterWorker::class)->name('worker.register');
 Route::get('attendance/earlyreport/{date}', [DownloadReportController::class, 'downloadEarly']);
 Route::get('attendance/latereport/{date}', [DownloadReportController::class, 'downloadLate']);
 Route::get('attendance/absentreport/{date}', [DownloadReportController::class, 'downloadAbsent']);
+Route::get('attendance/report/{dapartment}/{date}', [DownloadReportController::class, 'downloadDeptReport']);
 
 
 // for admin

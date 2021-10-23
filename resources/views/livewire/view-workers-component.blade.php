@@ -49,13 +49,11 @@
                                     <div class="col-12 col-md-12 d-flex align-items-center  mb-2">
                                         <label for="Dept" class="text-nowrap mr-2 mb-0">Dept</label>
                                         <select class="form-control form-control-sm" wire:model="selectedDept">
-                                            <option value="">Dept</option>
                                             <option value="Avalanche">Avalanche</option>
-                                            <option value="Altar Management">Altar Management
-                                            </option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Altar Management">Altar Management</option>
                                             <option value="COZA Care">COZA Care</option>
-                                            <option value="COZA Transfer Service">COZA Transfer
-                                                Service</option>
+                                            <option value="COZA Transfer Service">COZA Transfer Service</option>
                                             <option value="Child Care">Child Care</option>
                                             <option value="Decoration">Decoration</option>
                                             <option value="Drama">Drama</option>
@@ -64,12 +62,12 @@
                                             <option value="Host & Hostess">Host & Hostess</option>
                                             <option value="Partnership">Partnership</option>
                                             <option value="Pastoral Care">Pastoral Care</option>
-                                            <option value="Public Relations">Public Relations
-                                            </option>
-                                            <option value="Quality Control">Quality Control</option>
+                                            <option value="Public Relations">Public Relations</option>
+                                            <option value="M & E">M & E</option>
                                             <option value="Sound">Sound</option>
-                                            <option value="Traffic & Security">Traffic & Security
-                                            </option>
+                                            <option value="Outreach">Outreach</option>
+                                            <option value="New Convert">New Convert</option>
+                                            <option value="Traffic & Security">Traffic & Security</option>
                                             <option value="Ushering">Ushering</option>
                                             <option value="Witty">Witty</option>
                                             <option value="Word Factory">Word Factory</option>

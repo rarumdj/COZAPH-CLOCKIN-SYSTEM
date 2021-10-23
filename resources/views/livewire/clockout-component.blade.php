@@ -56,8 +56,8 @@
                                     <div class="col-12 col-md-12 d-flex align-items-center  mb-2">
                                         <label for="Dept" class="text-nowrap mr-2 mb-0">Dept</label>
                                         <select class="form-control form-control-sm" wire:model="selectedDept">
-                                            <option value="">Dept</option>
                                             <option value="Avalanche">Avalanche</option>
+                                            <option value="Admin">Admin</option>
                                             <option value="Altar Management">Altar Management</option>
                                             <option value="COZA Care">COZA Care</option>
                                             <option value="COZA Transfer Service">COZA Transfer Service</option>
@@ -70,8 +70,10 @@
                                             <option value="Partnership">Partnership</option>
                                             <option value="Pastoral Care">Pastoral Care</option>
                                             <option value="Public Relations">Public Relations</option>
-                                            <option value="Quality Control">Quality Control</option>
+                                            <option value="M & E">M & E</option>
                                             <option value="Sound">Sound</option>
+                                            <option value="Outreach">Outreach</option>
+                                            <option value="New Convert">New Convert</option>
                                             <option value="Traffic & Security">Traffic & Security</option>
                                             <option value="Ushering">Ushering</option>
                                             <option value="Witty">Witty</option>
@@ -183,9 +185,11 @@
                                                     {{ $attendance->department }}</span>
                                             </td>
                                             <td>{{ $attendance->user_id }}</td>
-                                            <td>{{ $attendance->clockin ? date('h:i a', strtotime($attendance->clockin)) : '' }}
+                                            <td>{{ $attendance->clockin ? date('h:i a', strtotime($attendance->clockin))
+                                                : '' }}
                                             </td>
-                                            <td>{{ $attendance->clockout ? date('h:i a', strtotime($attendance->clockout)) : ''}}
+                                            <td>{{ $attendance->clockout ? date('h:i a',
+                                                strtotime($attendance->clockout)) : ''}}
                                             </td>
                                             <td>
                                                 <button wire:click="clockoutSingle({{ $attendance->id }})"

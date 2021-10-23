@@ -52,6 +52,8 @@ class CreateAdminComponent extends Component
 
         if (count($this->getErrorBag()->all()) > 0) {
             $this->emit('alert', ['type' => 'error', 'message' => 'Password validation failed.']);
+            $this->resetErrorBag();
+            $this->resetValidation();
         }
 
         return view('livewire.create-admin-component')->layout('layouts.base');

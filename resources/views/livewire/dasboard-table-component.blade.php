@@ -45,8 +45,8 @@
                             <div class="col-12 col-md-12 d-flex align-items-center  mb-2">
                                 <label for="Dept" class="text-nowrap mr-2 mb-0">Dept</label>
                                 <select class="form-control form-control-sm" wire:model="selectedDept">
-                                    <option value="">Dept</option>
                                     <option value="Avalanche">Avalanche</option>
+                                    <option value="Admin">Admin</option>
                                     <option value="Altar Management">Altar Management</option>
                                     <option value="COZA Care">COZA Care</option>
                                     <option value="COZA Transfer Service">COZA Transfer Service</option>
@@ -59,8 +59,10 @@
                                     <option value="Partnership">Partnership</option>
                                     <option value="Pastoral Care">Pastoral Care</option>
                                     <option value="Public Relations">Public Relations</option>
-                                    <option value="Quality Control">Quality Control</option>
+                                    <option value="M & E">M & E</option>
                                     <option value="Sound">Sound</option>
+                                    <option value="Outreach">Outreach</option>
+                                    <option value="New Convert">New Convert</option>
                                     <option value="Traffic & Security">Traffic & Security</option>
                                     <option value="Ushering">Ushering</option>
                                     <option value="Witty">Witty</option>
@@ -89,101 +91,104 @@
                                 <button class="btn btn-secondary form-control btn-xs dropdown-toggle"
                                     data-toggle="dropdown">With Checked
                                     ({{ count($checked) }})
-                        </button>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" type="button"
-                                onclick="confirm('Are you sure you want to Clockout these Records?') || event.stopImmediatePropagation()"
-                                wire:click="clockoutMass()">
-                                Clockout
-                            </a>
-                            <a href="#" class="dropdown-item" type="button"
-                                onclick="confirm('Are you sure you want to Permit these Records?') || event.stopImmediatePropagation()"
-                                wire:click="permitMass()">
-                                Permit
-                            </a>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item" type="button"
+                                        onclick="confirm('Are you sure you want to Clockout these Records?') || event.stopImmediatePropagation()"
+                                        wire:click="clockoutMass()">
+                                        Clockout
+                                    </a>
+                                    <a href="#" class="dropdown-item" type="button"
+                                        onclick="confirm('Are you sure you want to Permit these Records?') || event.stopImmediatePropagation()"
+                                        wire:click="permitMass()">
+                                        Permit
+                                    </a>
+
+                                </div>
+                            </div>
+                            @endif
+                        </div> --}}
+
+                        <div class="">
+                            <div class="col-md-12 col-12 mb-2">
+                                <input type="search" wire:model.debounce.500ms="search" class="form-control"
+                                    placeholder="Search...">
+                            </div>
+                        </div>
+
+                        @if ($selectPage)
+                        <div class="col-md-10 mb-2">
+                            @if ($selectAll)
+                            <div>
+                                You have selected all <strong>{{ $attendances->total() }}</strong> items.
+                            </div>
+                            @else
+                            <div>
+                                You have selected <strong>{{ count($checked) }}</strong> items, Do you want to
+                                Select All
+                                <strong>{{ $attendances->total() }}</strong>?
+                                <a href="#" class="ml-2" wire:click="selectAll">Select All</a>
+                            </div>
+                            @endif
 
                         </div>
+                        @endif
+
+
                     </div>
-                    @endif
-                </div> --}}
-
-                <div class="">
-                    <div class="col-md-12 col-12 mb-2">
-                        <input type="search" wire:model.debounce.500ms="search" class="form-control"
-                            placeholder="Search...">
-                    </div>
-                </div>
-
-                @if ($selectPage)
-                <div class="col-md-10 mb-2">
-                    @if ($selectAll)
-                    <div>
-                        You have selected all <strong>{{ $attendances->total() }}</strong> items.
-                    </div>
-                    @else
-                    <div>
-                        You have selected <strong>{{ count($checked) }}</strong> items, Do you want to
-                        Select All
-                        <strong>{{ $attendances->total() }}</strong>?
-                        <a href="#" class="ml-2" wire:click="selectAll">Select All</a>
-                    </div>
-                    @endif
-
-                </div>
-                @endif
-
-
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover" width="100%">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" wire:model="selectPage" @if (!is_null($attendances) &&
-                                    $attendances->isEmpty())
-                                disabled
-                                @endif>
-                            </th>
-                            <th>Worker</th>
-                            <th>Reg ID</th>
-                            <th>Clocked in</th>
-                            <th>Clocked out</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(!is_null($attendances))
-                        @foreach ($attendances as $attendance)
-                        <tr class="@if ($this->isChecked($attendance->id))
+                    <div class="table-responsive">
+                        <table class="table table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" wire:model="selectPage" @if (!is_null($attendances) &&
+                                            $attendances->isEmpty())
+                                        disabled
+                                        @endif>
+                                    </th>
+                                    <th>Worker</th>
+                                    <th>Reg ID</th>
+                                    <th>Clocked in</th>
+                                    <th>Clocked out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(!is_null($attendances))
+                                @foreach ($attendances as $attendance)
+                                <tr class="@if ($this->isChecked($attendance->id))
                                     table-primary
                                 @endif">
-                            <td><input type="checkbox" value="{{ $attendance->id }}" wire:model="checked">
-                            </td>
-                            <td class="d-flex align-items-center border-top-0">
-                                <img class="profile-img img-sm img-rounded mr-2"
-                                    src="{{ asset('assets/images/profile/male/image_1.png') }}" alt="profile image" />
-                                <span>{{ $attendance->fullname }}
-                                    <br />
-                                    {{ $attendance->department }}</span>
-                            </td>
-                            <td>{{ $attendance->user_id }}</td>
-                            <td>{{ $attendance->clockin ? date('h:i a', strtotime($attendance->clockin)) : ''  }}</td>
-                            <td>{{ $attendance->clockout ? date('h:i a', strtotime($attendance->clockout)) : ''  }}</td>
-                        </tr>
-                        @endforeach
-                        @endif
-                    </tbody>
+                                    <td><input type="checkbox" value="{{ $attendance->id }}" wire:model="checked">
+                                    </td>
+                                    <td class="d-flex align-items-center border-top-0">
+                                        <img class="profile-img img-sm img-rounded mr-2"
+                                            src="{{ asset('assets/images/profile/male/image_1.png') }}"
+                                            alt="profile image" />
+                                        <span>{{ $attendance->fullname }}
+                                            <br />
+                                            {{ $attendance->department }}</span>
+                                    </td>
+                                    <td>{{ $attendance->user_id }}</td>
+                                    <td>{{ $attendance->clockin ? date('h:i a', strtotime($attendance->clockin)) : '' }}
+                                    </td>
+                                    <td>{{ $attendance->clockout ? date('h:i a', strtotime($attendance->clockout)) : ''
+                                        }}</td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
 
 
-                </table>
-            </div>
-            <div class="row mt-4">
-                <div class="col-sm-6 offset-5">
-                    @if(!is_null($attendances))
-                    {{ $attendances->links() }}
-                    @endif
+                        </table>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-6 offset-5">
+                            @if(!is_null($attendances))
+                            {{ $attendances->links() }}
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
