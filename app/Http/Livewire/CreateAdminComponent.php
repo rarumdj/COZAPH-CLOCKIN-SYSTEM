@@ -14,7 +14,7 @@ class CreateAdminComponent extends Component
     public $name, $email, $password, $confirm_password;
 
     protected $rules = [
-        'name' => 'required|min:6',
+        'name' => 'required',
         'email' => 'required|email',
         'password' => 'required',
         'confirm_password' => 'required|same:password',
