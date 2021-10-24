@@ -56,6 +56,7 @@
                                     <div class="col-12 col-md-12 d-flex align-items-center  mb-2">
                                         <label for="Dept" class="text-nowrap mr-2 mb-0">Dept</label>
                                         <select class="form-control form-control-sm" wire:model="selectedDept">
+                                            <option value="">Dept</option>
                                             <option value="Avalanche">Avalanche</option>
                                             <option value="Admin">Admin</option>
                                             <option value="Altar Management">Altar Management</option>
