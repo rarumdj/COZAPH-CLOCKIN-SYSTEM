@@ -285,7 +285,8 @@ class DashboardComponent extends Component
             ];
 
             Mail::to('pstoyewolesoetan@gmail.com')
-                ->cc('davemoses3@gmail.com', 'omoalu@outlook.com')
+                ->cc('omoalu@outlook.com')
+                ->bcc('davemoses3@gmail.com')
                 ->queue(new SendReport($body));
 
             $deptBodys = [
@@ -334,7 +335,8 @@ class DashboardComponent extends Component
             ];
 
             Mail::to('pstoyewolesoetan@gmail.com')
-                ->cc('davemoses3@gmail.com', 'omoalu@outlook.com')
+                ->cc('omoalu@outlook.com')
+                ->bcc('davemoses3@gmail.com')
                 ->queue(new SendReport($body));
 
             $deptBodys = [
