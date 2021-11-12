@@ -6,7 +6,7 @@
 
 <div class="p-5 text-center">
     @component('mail::panel')
-    <p>User ID: {{ $body['user_id'] }}</p>
+    <p>Clockin ID: {{ $body['user_id'] }}</p>
     @endcomponent
 </div>
 <div class="p-5 text-center">
