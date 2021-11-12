@@ -30,10 +30,11 @@ class ClockinComponent extends Component
 
     public function clockin()
     {
-        $calltimeWith15min = Carbon::createFromFormat('H:i', $this->calltime)->format('H:i:s');
-
-        $checktime_dup = Attendance::where('user_id', $this->user_id)->where('created_at', 'LIKE', '%' . Carbon::now()->format('Y-m-d') . '%')->first();
         if ($this->calltime !== '') {
+            $calltimeWith15min = Carbon::createFromFormat('H:i', $this->calltime)->format('H:i:s');
+
+            $checktime_dup = Attendance::where('user_id', $this->user_id)->where('created_at', 'LIKE', '%' . Carbon::now()->format('Y-m-d') . '%')->first();
+
             if (!$checktime_dup) {
                 $check_uid = Worker::where('user_id', $this->user_id)->first();
                 if ($check_uid) {
