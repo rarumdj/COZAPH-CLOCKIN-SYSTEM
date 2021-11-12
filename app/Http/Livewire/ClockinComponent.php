@@ -15,6 +15,18 @@ class ClockinComponent extends Component
     public $user_id;
     public $time;
     public $calltime;
+    public $checkid;
+
+    public function verifyuserid()
+    {
+        $worker = Worker::where('user_id', $this->user_id)->first();
+        if (is_null($worker)) {
+            $this->checkid = '';
+        } else {
+            $this->checkid = $worker->firstname . ' ' . $worker->lastname;
+            session()->flash('check');
+        }
+    }
 
     public function clockin()
     {

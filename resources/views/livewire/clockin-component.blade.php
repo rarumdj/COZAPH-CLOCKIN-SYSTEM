@@ -42,6 +42,11 @@
                                     <div class="alert alert-success" role="alert">{{ Session::get('success') }}</div>
                                     @elseif (Session::has('error'))
                                     <div class="alert alert-danger" role="alert">{{ Session::get('error') }}</div>
+                                    @elseif (Session::has('check'))
+                                    <div class="alert alert-warning" role="alert"><input type="text"
+                                            class="form-control bg-transparent border-0 font-weight-bold"
+                                            wire:model="checkid" disabled>
+                                    </div>
                                     @endif
                                     <form wire:submit.prevent="clockin">
                                         <div class="form-group row showcase_row_area">
@@ -59,7 +64,7 @@
                                             </div>
                                             <div class="col-md-9 showcase_content_area">
                                                 <input type="text" class="form-control" placeholder="Worker ID"
-                                                    wire:model="user_id" />
+                                                    wire:model="user_id" wire:keyup="verifyuserid" />
                                             </div>
                                         </div>
                                         <div x-data="{ show: false }" class="form-group showcase_row_area">
