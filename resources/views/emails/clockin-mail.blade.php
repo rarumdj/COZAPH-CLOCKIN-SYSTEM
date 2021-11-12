@@ -1,6 +1,6 @@
 @component('mail::message')
 <div class="mb-5 w-100 text-center">
-    <h1>Dear, {{ $body['name'] }}</h1>
+    <h1>Dear, {{ $body['name'] }} ({{ $body['user_id'] }})</h1>
     <p>Clockin activity {{ $body['date'] }}.</p>
 </div>
 

@@ -33,117 +33,125 @@ class ClockinComponent extends Component
         $calltimeWith15min = Carbon::createFromFormat('H:i', $this->calltime)->format('H:i:s');
 
         $checktime_dup = Attendance::where('user_id', $this->user_id)->where('created_at', 'LIKE', '%' . Carbon::now()->format('Y-m-d') . '%')->first();
-        if (!$checktime_dup) {
-            $check_uid = Worker::where('user_id', $this->user_id)->first();
-            if ($check_uid) {
-                if ($this->time == '') {
-                    if (Carbon::now()->format('H:i:s') <= $calltimeWith15min) {
-                        $clockin = new Attendance;
-                        $clockin->user_id = $this->user_id;
-                        $clockin->clockin = Carbon::now()->format('H:i:s');
-                        $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
-                        $clockin->department = $check_uid->department;
-                        $clockin->email = $check_uid->email;
-                        $clockin->phone = $check_uid->phone;
-                        $clockin->calltime = $this->calltime;
-                        $clockin->status = 'Early';
-                        $clockin->save();
-                        session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
-                        $body = [
-                            'type' => 'clockin',
-                            'name' => $clockin->fullname,
-                            'time' => date('h:i a', strtotime($clockin->clockin)),
-                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
-                            'status' => 'Early',
-                            'date' => Carbon::now()->format('Y-m-d'),
+        if ($this->calltime == '') {
+            if (!$checktime_dup) {
+                $check_uid = Worker::where('user_id', $this->user_id)->first();
+                if ($check_uid) {
+                    if ($this->time == '') {
+                        if (Carbon::now()->format('H:i:s') <= $calltimeWith15min) {
+                            $clockin = new Attendance;
+                            $clockin->user_id = $this->user_id;
+                            $clockin->clockin = Carbon::now()->format('H:i:s');
+                            $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
+                            $clockin->department = $check_uid->department;
+                            $clockin->email = $check_uid->email;
+                            $clockin->phone = $check_uid->phone;
+                            $clockin->calltime = $this->calltime;
+                            $clockin->status = 'Early';
+                            $clockin->save();
+                            session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
+                            $body = [
+                                'type' => 'clockin',
+                                'name' => $clockin->fullname,
+                                'user_id' => $clockin->user_id,
+                                'time' => date('h:i a', strtotime($clockin->clockin)),
+                                'calltime' => date('h:i a', strtotime($clockin->calltime)),
+                                'status' => 'Early',
+                                'date' => Carbon::now()->format('Y-m-d'),
 
-                        ];
+                            ];
 
-                        Mail::to($check_uid->email)
-                            ->queue(new SendReport($body));
+                            Mail::to($check_uid->email)
+                                ->queue(new SendReport($body));
+                        } else {
+                            $clockin = new Attendance;
+                            $clockin->user_id = $this->user_id;
+                            $clockin->clockin = Carbon::now()->format('H:i:s');
+                            $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
+                            $clockin->department = $check_uid->department;
+                            $clockin->email = $check_uid->email;
+                            $clockin->phone = $check_uid->phone;
+                            $clockin->calltime = $this->calltime;
+                            $clockin->status = 'Late';
+                            $clockin->save();
+                            session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
+                            $body = [
+                                'type' => 'clockin',
+                                'name' => $clockin->fullname,
+                                'user_id' => $clockin->user_id,
+                                'time' => date('h:i a', strtotime($clockin->clockin)),
+                                'calltime' => date('h:i a', strtotime($clockin->calltime)),
+                                'status' => 'Late',
+                                'date' => Carbon::now()->format('Y-m-d'),
+
+                            ];
+
+                            Mail::to($check_uid->email)
+                                ->queue(new SendReport($body));
+                        }
                     } else {
-                        $clockin = new Attendance;
-                        $clockin->user_id = $this->user_id;
-                        $clockin->clockin = Carbon::now()->format('H:i:s');
-                        $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
-                        $clockin->department = $check_uid->department;
-                        $clockin->email = $check_uid->email;
-                        $clockin->phone = $check_uid->phone;
-                        $clockin->calltime = $this->calltime;
-                        $clockin->status = 'Late';
-                        $clockin->save();
-                        session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
-                        $body = [
-                            'type' => 'clockin',
-                            'name' => $clockin->fullname,
-                            'time' => date('h:i a', strtotime($clockin->clockin)),
-                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
-                            'status' => 'Late',
-                            'date' => Carbon::now()->format('Y-m-d'),
+                        if ($this->time <= $calltimeWith15min) {
+                            $clockin = new Attendance;
+                            $clockin->user_id = $this->user_id;
+                            $clockin->clockin = $this->time;
+                            $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
+                            $clockin->department = $check_uid->department;
+                            $clockin->email = $check_uid->email;
+                            $clockin->phone = $check_uid->phone;
+                            $clockin->calltime = $this->calltime;
+                            $clockin->status = 'Early';
+                            $clockin->save();
+                            session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
 
-                        ];
+                            $body = [
+                                'type' => 'clockin',
+                                'name' => $clockin->fullname,
+                                'user_id' => $clockin->user_id,
+                                'time' => date('h:i a', strtotime($clockin->clockin)),
+                                'calltime' => date('h:i a', strtotime($clockin->calltime)),
+                                'status' => 'Early',
+                                'date' => Carbon::now()->format('Y-m-d'),
 
-                        Mail::to($check_uid->email)
-                            ->queue(new SendReport($body));
+                            ];
+
+                            Mail::to($check_uid->email)
+                                ->queue(new SendReport($body));
+                        } else {
+                            $clockin = new Attendance;
+                            $clockin->user_id = $this->user_id;
+                            $clockin->clockin = $this->time;
+                            $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
+                            $clockin->department = $check_uid->department;
+                            $clockin->email = $check_uid->email;
+                            $clockin->phone = $check_uid->phone;
+                            $clockin->calltime = $this->calltime;
+                            $clockin->status = 'Late';
+                            $clockin->save();
+                            session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
+
+                            $body = [
+                                'type' => 'clockin',
+                                'name' => $clockin->fullname,
+                                'user_id' => $clockin->user_id,
+                                'time' => date('h:i a', strtotime($clockin->clockin)),
+                                'calltime' => date('h:i a', strtotime($clockin->calltime)),
+                                'status' => 'Late',
+                                'date' => Carbon::now()->format('Y-m-d'),
+
+                            ];
+
+                            Mail::to($check_uid->email)
+                                ->queue(new SendReport($body));
+                        }
                     }
                 } else {
-                    if ($this->time <= $calltimeWith15min) {
-                        $clockin = new Attendance;
-                        $clockin->user_id = $this->user_id;
-                        $clockin->clockin = $this->time;
-                        $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
-                        $clockin->department = $check_uid->department;
-                        $clockin->email = $check_uid->email;
-                        $clockin->phone = $check_uid->phone;
-                        $clockin->calltime = $this->calltime;
-                        $clockin->status = 'Early';
-                        $clockin->save();
-                        session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
-
-                        $body = [
-                            'type' => 'clockin',
-                            'name' => $clockin->fullname,
-                            'time' => date('h:i a', strtotime($clockin->clockin)),
-                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
-                            'status' => 'Early',
-                            'date' => Carbon::now()->format('Y-m-d'),
-
-                        ];
-
-                        Mail::to($check_uid->email)
-                            ->queue(new SendReport($body));
-                    } else {
-                        $clockin = new Attendance;
-                        $clockin->user_id = $this->user_id;
-                        $clockin->clockin = $this->time;
-                        $clockin->fullname = $check_uid->firstname . ' ' . $check_uid->lastname;
-                        $clockin->department = $check_uid->department;
-                        $clockin->email = $check_uid->email;
-                        $clockin->phone = $check_uid->phone;
-                        $clockin->calltime = $this->calltime;
-                        $clockin->status = 'Late';
-                        $clockin->save();
-                        session()->flash('success', '' . $clockin->fullname . ' has been clocked in');
-
-                        $body = [
-                            'type' => 'clockin',
-                            'name' => $clockin->fullname,
-                            'time' => date('h:i a', strtotime($clockin->clockin)),
-                            'calltime' => date('h:i a', strtotime($clockin->calltime)),
-                            'status' => 'Late',
-                            'date' => Carbon::now()->format('Y-m-d'),
-
-                        ];
-
-                        Mail::to($check_uid->email)
-                            ->queue(new SendReport($body));
-                    }
+                    session()->flash('error', 'Worker doesnt exsit');
                 }
             } else {
-                session()->flash('error', 'Worker doesnt exsit');
+                session()->flash('error', 'Worker Already Clocked in');
             }
         } else {
-            session()->flash('error', 'Worker Already Clocked in');
+            session()->flash('error', 'Please set calltime');
         }
     }
 
