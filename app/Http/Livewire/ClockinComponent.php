@@ -33,7 +33,7 @@ class ClockinComponent extends Component
         $calltimeWith15min = Carbon::createFromFormat('H:i', $this->calltime)->format('H:i:s');
 
         $checktime_dup = Attendance::where('user_id', $this->user_id)->where('created_at', 'LIKE', '%' . Carbon::now()->format('Y-m-d') . '%')->first();
-        if ($this->calltime == '') {
+        if (!$this->calltime == '') {
             if (!$checktime_dup) {
                 $check_uid = Worker::where('user_id', $this->user_id)->first();
                 if ($check_uid) {
