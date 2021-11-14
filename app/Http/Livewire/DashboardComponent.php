@@ -284,7 +284,7 @@ class DashboardComponent extends Component
                 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
             ];
 
-            Mail::to('pstoyewolesoetan@gmail.com')
+            Mail::to('cozacorporateph@gmail.com')
                 ->cc('omoalu@outlook.com')
                 ->bcc('davemoses3@gmail.com')
                 ->queue(new SendReport($body));
@@ -334,7 +334,7 @@ class DashboardComponent extends Component
                 'date' => $this->date,
             ];
 
-            Mail::to('pstoyewolesoetan@gmail.com')
+            Mail::to('cozacorporateph@gmail.com')
                 ->cc('omoalu@outlook.com')
                 ->bcc('davemoses3@gmail.com')
                 ->queue(new SendReport($body));
