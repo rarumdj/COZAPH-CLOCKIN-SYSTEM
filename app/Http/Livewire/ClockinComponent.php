@@ -31,7 +31,6 @@ class ClockinComponent extends Component
     public function clockin()
     {
         if (!$this->calltime == '') {
-
             $calltimeWith15min = Carbon::createFromFormat('H:i', $this->calltime)->format('H:i:s');
 
             $checktime_dup = Attendance::where('user_id', $this->user_id)->where('created_at', 'LIKE', '%' . Carbon::now()->format('Y-m-d') . '%')->first();
@@ -115,7 +114,7 @@ class ClockinComponent extends Component
                                 'date' => Carbon::now()->format('Y-m-d'),
 
                             ];
-
+                            $this->reset('time');
                             Mail::to($check_uid->email)
                                 ->queue(new SendReport($body));
                         } else {
@@ -141,7 +140,7 @@ class ClockinComponent extends Component
                                 'date' => Carbon::now()->format('Y-m-d'),
 
                             ];
-
+                            $this->reset('time');
                             Mail::to($check_uid->email)
                                 ->queue(new SendReport($body));
                         }
