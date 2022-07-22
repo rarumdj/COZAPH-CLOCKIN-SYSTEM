@@ -29,6 +29,6 @@ class DeptReport extends Mailable
      */
     public function build()
     {
-        return $this->subject('COZAPH Workforce ' . $this->deptBody['dept'] . ' Report(' . $this->deptBody['date'] . ')')->markdown('emails.dept-report-mail', ['body' => $this->deptBody]);
+        return $this->subject(config('app.name') . ' Workforce' . $this->deptBody['dept'] . ' Report(' . $this->deptBody['date'] . ')')->markdown('emails.dept-report-mail', ['body' => $this->deptBody]);
     }
 }

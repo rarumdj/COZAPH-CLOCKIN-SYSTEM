@@ -30,9 +30,9 @@ class SendReport extends Mailable
     public function build()
     {
         if ($this->body['type'] == 'dashboard') {
-            return $this->subject('COZAPH Workforce Report(' . $this->body['date'] . ')')->markdown('emails.report-mail', ['body' => $this->body]);
+            return $this->subject(config('app.name').' Workforce Report(' . $this->body['date'] . ')')->markdown('emails.report-mail', ['body' => $this->body]);
         } elseif ($this->body['type'] == 'clockin') {
-            return $this->subject('COZAPH Workforce Clockin Report(' . $this->body['date'] . ')')->markdown('emails.clockin-mail', ['body' => $this->body]);
+            return $this->subject(config('app.name').' Workforce Clockin Report(' . $this->body['date'] . ')')->markdown('emails.clockin-mail', ['body' => $this->body]);
         }
     }
 }
