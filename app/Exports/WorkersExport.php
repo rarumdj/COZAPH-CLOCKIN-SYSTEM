@@ -39,6 +39,7 @@ class WorkersExport implements FromQuery, WithHeadings
             'Marital Status',
             'Birthday',
             'Image',
+            'Role',
             'Created_at',
             'Updated_at',
         ];

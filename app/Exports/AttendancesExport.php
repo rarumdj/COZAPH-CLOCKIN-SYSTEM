@@ -41,6 +41,7 @@ class AttendancesExport implements FromQuery, WithHeadings
             'Permit',
             'Status',
             'Image',
+            'Role',
             'Created_at',
             'Updated_at',
         ];

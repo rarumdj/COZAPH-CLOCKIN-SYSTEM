@@ -27,6 +27,7 @@ class CreateAttendancesTable extends Migration
             $table->string('permit')->default('No');
             $table->string('status')->nullable();
             $table->string('image')->nullable();
+            $table->string('role');
             $table->timestamps();
         });
     }
