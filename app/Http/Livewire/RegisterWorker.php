@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\Registration;
+use App\Models\Department;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -13,6 +14,7 @@ class RegisterWorker extends Component
     public $lastname;
     public $department;
     public $email;
+    public $role;
     public $phone;
     public $m_status;
     public $b_day;
@@ -23,14 +25,13 @@ class RegisterWorker extends Component
 
     public function mount()
     {
-
         $this->department = 'Avalanche';
         $this->m_status = 'Single';
+        $this->role = 'Member';
     }
 
     public function getUserIdProperty()
     {
-
         $worker = Worker::all()->count();
         if ($worker < 1) {
             return '001';
@@ -75,8 +76,17 @@ class RegisterWorker extends Component
             $this->emit('alert', ['type' => 'error', 'message' => 'Worker already exists.']);
         }
     }
+
+    public function getDepartmentsProperty()
+    {
+        $list_dept = Department::all();
+        if (!is_null($list_dept)) {
+            return  $list_dept;
+        }
+    }
+
     public function render()
     {
-        return view('livewire.register-worker', ['newWorker' => $this->success])->layout('layouts.base');
+        return view('livewire.register-worker', ['newWorker' => $this->success, 'departments' => $this->departments])->layout('layouts.base');
     }
 }

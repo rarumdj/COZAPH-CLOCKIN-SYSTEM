@@ -18,7 +18,8 @@ class Worker extends Model
                 ->orWhere('lastname', 'like', $term)
                 ->orWhere('email', 'like', $term)
                 ->orWhere('department', 'like', $term)
-                ->orWhere('user_id', 'like', $term);
+                ->orWhere('user_id', 'like', $term)
+                ->orWhere('role', 'like', $term);
         });
     }
 }

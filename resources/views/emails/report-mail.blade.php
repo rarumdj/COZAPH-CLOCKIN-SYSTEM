@@ -29,5 +29,5 @@
 </div>
 Thanks and Regards!<br>
 {{ config('app.name') }}<br>
-COZA Admin.
+{{ config('app.name') }} Admin.
 @endcomponent

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>COZA - Web App</title>
+    <title>Christ Heaven - Clockin App</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/mdi/css/materialdesignicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.addons.css') }}" />
@@ -37,7 +37,7 @@
         @yield('content')
 
         <div class="auth_footer">
-            <p class="text-muted text-center">© Label Inc 2019</p>
+            <p class="text-muted text-center">© Christ Heaven  {{ date('Y') }}</p>
         </div>
     </div>
     <!--page body ends -->

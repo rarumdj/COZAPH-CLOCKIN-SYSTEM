@@ -25,6 +25,7 @@ class CreateWorkersTable extends Migration
             $table->string('m_status')->nullable();
             $table->string('b_day')->nullable();
             $table->string('image')->nullable();
+            $table->string('role');
             $table->timestamps();
         });
     }

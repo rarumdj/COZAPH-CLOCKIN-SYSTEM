@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Exports\AttendancesExport;
 use App\Models\Attendance;
+use App\Models\Department;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -123,8 +124,16 @@ class ClockoutComponent extends Component
         return (new AttendancesExport($this->checked))->download('attendance' . time()  . '.xlsx');
     }
 
+    public function getListDepartmentsProperty()
+    {
+        $list_dept = Department::all();
+        if (!is_null($list_dept)) {
+            return  $list_dept;
+        }
+    }
+
     public function render()
     {
-        return view('livewire.clockout-component', ['attendances' => $this->attendances])->layout('layouts.base');
+        return view('livewire.clockout-component', ['attendances' => $this->attendances,'departments' => $this->departments])->layout('layouts.base');
     }
 }

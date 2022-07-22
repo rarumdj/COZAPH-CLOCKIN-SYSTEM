@@ -2,13 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Exports\WorkersExport;
 use App\Models\Department;
 use App\Models\Worker;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ViewWorkersComponent extends Component
+class DepartmentComponent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -20,16 +19,15 @@ class ViewWorkersComponent extends Component
     public $selectAll = false;
 
 
-    public function getWorkersProperty()
+    public function getDepartmentsProperty()
     {
-
-        return $this->workersQuery->paginate($this->paginate);
+        return $this->departmentsQuery->paginate($this->paginate);
     }
 
-    public function getWorkersQueryProperty()
+    public function getDepartmentsQueryProperty()
     {
-        return Worker::when($this->selectedDept, function ($query) {
-            $query->where('department', $this->selectedDept);
+        return Department::when($this->selectedDept, function ($query) {
+            $query->where('name', $this->selectedDept);
         })
             ->search(trim($this->search));
     }
@@ -37,7 +35,7 @@ class ViewWorkersComponent extends Component
     public function updatedSelectPage($value)
     {
         if ($value) {
-            $this->checked = $this->workers->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+            $this->checked = $this->departments->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->checked = [];
             $this->selectAll = false;
@@ -52,7 +50,7 @@ class ViewWorkersComponent extends Component
     public function selectAll()
     {
         $this->selectAll = true;
-        $this->checked = $this->workersQuery->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+        $this->checked = $this->departmentsQuery->pluck('id')->map(fn ($item) => (string) $item)->toArray();
     }
 
     public function isChecked($id)
@@ -62,27 +60,22 @@ class ViewWorkersComponent extends Component
 
     public function delete($id)
     {
-        Worker::findorfail($id)->delete();
+        Department::findorfail($id)->delete();
         $this->checked = array_diff($this->checked, [$id]);
-        $this->emit('alert', ['type' => 'success', 'message' => 'Worker has been deleted successfully.']);
+        $this->emit('alert', ['type' => 'success', 'message' => 'Department has been deleted successfully.']);
     }
 
     public function deleteMultiple()
     {
-        Worker::whereKey($this->checked)->delete();
+        Department::whereKey($this->checked)->delete();
         $this->checked = [];
         $this->selectAll = false;
         $this->selectPage = false;
-        $this->emit('alert', ['type' => 'success', 'message' => 'Selected Workers has been deleted successfully.']);
+        $this->emit('alert', ['type' => 'success', 'message' => 'Selected Departments has been deleted successfully.']);
     }
 
 
-    public function download()
-    {
-        return (new WorkersExport($this->checked))->download('workers' . time()  . '.xlsx');
-    }
-
-    public function getDepartmentsProperty()
+    public function getListDepartmentsProperty()
     {
         $list_dept = Department::all();
         if (!is_null($list_dept)) {
@@ -92,6 +85,6 @@ class ViewWorkersComponent extends Component
 
     public function render()
     {
-        return view('livewire.view-workers-component', ['workers' => $this->workers, 'departments' => $this->departments])->layout('layouts.base');
+        return view('livewire.department-component', ['departments' => $this->departments, 'listdepts'=> $this->listdepartments])->layout('layouts.base');
     }
 }

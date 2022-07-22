@@ -24,7 +24,8 @@ class Attendance extends Model
             $query->where('fullname', 'like', $term)
                 ->orWhere('email', 'like', $term)
                 ->orWhere('department', 'like', $term)
-                ->orWhere('user_id', 'like', $term);
+                ->orWhere('user_id', 'like', $term)
+                ->orWhere('role', 'like', $term);
         });
     }
 }

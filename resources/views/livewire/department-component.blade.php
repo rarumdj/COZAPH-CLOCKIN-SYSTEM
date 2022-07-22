@@ -18,12 +18,12 @@
 
                             <div class="align-items-center justify-content-between d-flex">
                                 <div>
-                                    Workforce Members
+                                    Departments
                                 </div>
                                 <div class="ml-auto showcase_row_area">
                                     <div class="col-md-9 showcase_content_area">
-                                        <a href="{{ route('worker.register') }}" class="btn btn-primary">
-                                            New Worker
+                                        <a href="{{ route('department.create') }}" class="btn btn-primary">
+                                            New Department
                                         </a>
                                     </div>
                                 </div>
@@ -50,9 +50,9 @@
                                         <label for="Dept" class="text-nowrap mr-2 mb-0">Dept</label>
                                         <select class="form-control form-control-sm" wire:model="selectedDept">
                                             <option value="">Dept</option>
-                                            @foreach ($departments as $department)
-                                            <option value={{ $department->name }}>{{ $department->name }}</option>
-                                            @endforeach
+                                            @foreach ($listdepts as $dept)
+                                            <option value={{ $dept->name }}>{{ $dept->name }}</option>
+                                    @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -65,11 +65,7 @@
                                             ({{ count($checked) }})
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a href="#" class="dropdown-item" type="button"
-                                                onclick="confirm('Are you sure you want to Download these Records?') || event.stopImmediatePropagation()"
-                                                wire:click="download()">
-                                                Download
-                                            </a>
+
                                             <a href="#" class="dropdown-item" type="button"
                                                 onclick="confirm('Are you sure you want to Delete these Records?') || event.stopImmediatePropagation()"
                                                 wire:click="deleteMultiple()">
@@ -117,49 +113,36 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input type="checkbox" wire:model="selectPage" @if(!is_null($workers) &&
-                                                    $workers->isEmpty())
+                                                <input type="checkbox" wire:model="selectPage" @if(!is_null($departments) &&
+                                                    $departments->isEmpty())
                                                 disabled
                                                 @endif>
                                             </th>
-                                            <th>Reg ID</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Occupation</th>
-                                            <th>Marital Status</th>
+                                            <th>Name</th>
+                                            <th>Abr</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($workers as $worker)
-                                        <tr class="@if ($this->isChecked($worker->id))
+                                        @foreach ($departments as $department)
+                                        <tr class="@if ($this->isChecked($department->id))
                                             table-primary
                                         @endif">
-                                            <td><input type="checkbox" value="{{ $worker->id }}" wire:model="checked">
+                                            <td><input type="checkbox" value="{{ $department->id }}" wire:model="checked">
                                             </td>
-                                            <td>{{ $worker->user_id }}</td>
-                                            <td class="d-flex align-items-center border-top-0">
-                                                <img class="profile-img img-sm img-rounded mr-2"
-                                                    src="{{ asset('assets/images/profile/male/image_1.png') }}"
-                                                    alt="profile image" />
-                                                <span>{{ $worker->firstname.' '.$worker->lastname }}
-                                                    <br />
-                                                    {{ $worker->department }}</span>
-                                            </td>
-                                            <td>{{ $worker->email }}</td>
-                                            <td>{{ $worker->phone }}</td>
-                                            <td>{{ $worker->occupation }}</td>
-                                            <td>{{ $worker->m_status }}</td>
+                                            <td>{{ $department->name }}</td>
+
+                                            <td>{{ $department->abr }}</td>
+
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="{{ route('worker.edit', ['user_id'=>$worker->user_id]) }}"
+                                                    <a href="{{ route('department.edit', ['Uid'=>$department->id]) }}"
                                                         class="btn btn-xs btn-primary mr-2">Edit
                                                     </a>
                                                     <a href="#" class="btn btn-xs btn-danger" type="button"
                                                         onclick="confirm('Are you sure you want to Delete these Record?') || event.stopImmediatePropagation()"
-                                                        wire:click="delete({{ $worker->id }})">
+                                                        wire:click="delete({{ $department->id }})">
                                                         Delete
                                                     </a>
                                                 </div>
@@ -173,7 +156,7 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-sm-6 offset-5">
-                                    {{ $workers->links() }}
+                                    {{ $departments->links() }}
                                 </div>
                             </div>
                         </div>

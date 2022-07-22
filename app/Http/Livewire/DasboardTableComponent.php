@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Exports\AttendancesExport;
 use App\Models\Attendance;
+use App\Models\Department;
 use Carbon\Carbon;
 use Log;
 use Livewire\Component;
@@ -151,9 +152,15 @@ class DasboardTableComponent extends Component
     {
         return (new AttendancesExport($this->checked))->download('attendance' . time()  . '.xlsx');
     }
-
+    public function getDepartmentsProperty()
+    {
+        $list_dept = Department::all();
+        if (!is_null($list_dept)) {
+            return  $list_dept;
+        }
+    }
     public function render()
     {
-        return view('livewire.dasboard-table-component', ['attendances' => $this->attendances]);
+        return view('livewire.dasboard-table-component', ['attendances' => $this->attendances,'departments' => $this->departments]);
     }
 }

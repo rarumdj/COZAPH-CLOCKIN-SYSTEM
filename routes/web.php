@@ -6,8 +6,11 @@ use App\Http\Livewire\ChangeDateComponent;
 use App\Http\Livewire\ClockinComponent;
 use App\Http\Livewire\ClockoutComponent;
 use App\Http\Livewire\CreateAdminComponent;
+use App\Http\Livewire\CreateDepartmentComponent;
 use App\Http\Livewire\DashboardComponent;
 use App\Http\Livewire\DatedDashboardComponent;
+use App\Http\Livewire\DepartmentComponent;
+use App\Http\Livewire\EditDepartmentComponent;
 use App\Http\Livewire\EditWorkersComponent;
 use App\Http\Livewire\MailDashboardComponent;
 use App\Http\Livewire\MailerComponent;
@@ -50,6 +53,9 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('mail-dashborad/', MailDashboardComponent::class)->name('mail.dashboard');
     Route::get('mail-dashborad/mailer/', MailerComponent::class)->name('mail.mailer');
     Route::get('/register-admin', CreateAdminComponent::class)->name('admin.register');
+    Route::get('/department', DepartmentComponent::class)->name('department.view');
+    Route::get('/create-department', CreateDepartmentComponent::class)->name('department.create');
+    Route::get('department/edit/{Uid}', EditDepartmentComponent::class)->name('department.edit');
 });
 
 require_once __DIR__ . '/fortify.php';
