@@ -14,6 +14,7 @@ class EditWorkersComponent extends Component
     public $phone;
     public $m_status;
     public $b_day;
+    public $role;
     // public $image;
     public $user_id;
 
@@ -29,6 +30,7 @@ class EditWorkersComponent extends Component
         $this->m_status = $worker->m_status;
         $this->b_day = $worker->b_day;
         $this->user_id = $worker->user_id;
+        $this->role = $worker->role;
     }
 
     public function updateWorker()
@@ -42,6 +44,7 @@ class EditWorkersComponent extends Component
         $updateWorker->m_status = $this->m_status;
         $updateWorker->b_day = $this->b_day;
         // $newWorker->image = $this->image;
+        $updateWorker->role = $this->role;
         $updateWorker->user_id = $this->user_id;
         $updateWorker->save();
         $this->emit('alert', ['type' => 'success', 'message' => 'Worker has been updated successfully.']);

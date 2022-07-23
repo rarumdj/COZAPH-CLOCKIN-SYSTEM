@@ -47,6 +47,7 @@ class ClockinComponent extends Component
                             $clockin->department = $check_uid->department;
                             $clockin->email = $check_uid->email;
                             $clockin->phone = $check_uid->phone;
+                            $clockin->role = $check_uid->role;
                             $clockin->calltime = $this->calltime;
                             $clockin->status = 'Early';
                             $clockin->save();
@@ -72,6 +73,7 @@ class ClockinComponent extends Component
                             $clockin->department = $check_uid->department;
                             $clockin->email = $check_uid->email;
                             $clockin->phone = $check_uid->phone;
+                            $clockin->role = $check_uid->role;
                             $clockin->calltime = $this->calltime;
                             $clockin->status = 'Late';
                             $clockin->save();
@@ -99,6 +101,7 @@ class ClockinComponent extends Component
                             $clockin->department = $check_uid->department;
                             $clockin->email = $check_uid->email;
                             $clockin->phone = $check_uid->phone;
+                            $clockin->role = $check_uid->role;
                             $clockin->calltime = $this->calltime;
                             $clockin->status = 'Early';
                             $clockin->save();
@@ -125,6 +128,7 @@ class ClockinComponent extends Component
                             $clockin->department = $check_uid->department;
                             $clockin->email = $check_uid->email;
                             $clockin->phone = $check_uid->phone;
+                            $clockin->role = $check_uid->role;
                             $clockin->calltime = $this->calltime;
                             $clockin->status = 'Late';
                             $clockin->save();
@@ -170,6 +174,7 @@ class ClockinComponent extends Component
                     $clockin->fullname = $checks->firstname . ' ' . $checks->lastname;
                     $clockin->department = $checks->department;
                     $clockin->email = $checks->email;
+                    $clockin->role = $checks->role;
                     $clockin->phone = $checks->phone;
                     $clockin->calltime = $this->calltime;
                     $clockin->status = 'Absent';

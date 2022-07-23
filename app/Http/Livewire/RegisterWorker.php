@@ -55,6 +55,7 @@ class RegisterWorker extends Component
             $newWorker->m_status = $this->m_status;
             $newWorker->b_day = $this->b_day;
             $newWorker->user_id = $this->userId;
+            $newWorker->role = $this->role;
             $newWorker->save();
             // session()->flash('message', 'Worker has been added successfully');
             $this->emit('alert', ['type' => 'success', 'message' => 'Worker has been added successfully.']);
