@@ -38,6 +38,7 @@
                                     <option value="10">10</option>
                                     <option value="20">20</option>
                                     <option value="30">30</option>
+                                    <option value="50">50</option>
                                 </select>
                             </div>
                         </div>
@@ -47,29 +48,34 @@
                                 <select class="form-control form-control-sm" wire:model="selectedDept">
                                     <option value="">Dept</option>
                                     <option value="Avalanche">Avalanche</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Altar Management">Altar Management</option>
-                                    <option value="COZA Care">COZA Care</option>
-                                    <option value="COZA Transfer Service">COZA Transfer Service</option>
-                                    <option value="Child Care">Child Care</option>
-                                    <option value="Decoration">Decoration</option>
-                                    <option value="Drama">Drama</option>
-                                    <option value="Media">Media</option>
-                                    <option value="Hospitality">Hospitality</option>
-                                    <option value="Host & Hostess">Host & Hostess</option>
-                                    <option value="Partnership">Partnership</option>
-                                    <option value="Pastoral Care">Pastoral Care</option>
-                                    <option value="Public Relations">Public Relations</option>
-                                    <option value="M & E">M & E</option>
-                                    <option value="Sound">Sound</option>
-                                    <option value="Outreach">Outreach</option>
-                                    <option value="New Convert">New Convert</option>
-                                    <option value="Traffic & Security">Traffic & Security</option>
-                                    <option value="Ushering">Ushering</option>
-                                    <option value="Witty">Witty</option>
-                                    <option value="Word Factory">Word Factory</option>
-                                    <option value="Sparkles">Sparkles</option>
-                                    <option value="Protocol">Protocol</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Altar Management">Altar Management</option>
+                                                    <option value="Welfare">Welfare</option>
+                                                    <option value="COZA Transfer Service">COZA Transfer Service</option>
+                                                    <option value="Child Care">Child Care</option>
+                                                    <option value="Decoration">Decoration</option>
+                                                    <option value="Drama">Drama</option>
+                                                    <option value="Media">Media</option>
+                                                    <option value="Head of Workforce">Head of Workforce</option>
+                                                    <option value="Hospitality">Hospitality</option>
+                                                    <option value="Host & Hostess">Host & Hostess</option>
+                                                    <option value="Partnership">Partnership</option>
+                                                    <option value="Pastoral Care">Pastoral Care</option>
+                                                    <option value="Public Relations">Public Relations</option>
+                                                    <option value="M & E">M & E</option>
+                                                    <option value="Sound">Sound</option>
+                                                    <option value="Outreach">Outreach</option>
+                                                    <option value="New Convert">New Convert</option>
+                                                    <option value="Traffic & Security">Traffic & Security</option>
+                                                    <option value="Ushering">Ushering</option>
+                                                    <option value="Witty">Witty</option>
+                                                    <option value="Word Factory">Word Factory</option>
+                                                    <option value="Sparkles">Sparkles</option>
+                                                    <option value="Protocol">Protocol</option>
+                                                    <option value="Quality Control">Quality Control</option>
+                                                    <option value="Light">Light</option>
+                                                    <option value="Photismos">Photismos</option>
+                                                    <option value="Special Duties">Special Duties</option>
                                 </select>
                             </div>
                         </div>
