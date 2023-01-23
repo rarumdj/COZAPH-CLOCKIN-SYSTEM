@@ -431,10 +431,12 @@ class DatedDashboardComponent extends Component
                 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
             ];
 
-            Mail::to('cozacorporateph@gmail.com')
-                ->cc('nneomaudeariry@gmail.com')
-                ->bcc('davemoses3@gmail.com')
-                ->queue(new SendReport($body));
+            $list = ['abc@test.com', 'xyz@test.com'];
+
+            Mail::to('davemoses3@gmail.com')
+            ->cc($list)
+            ->bcc('davemoses3@gmail.com')
+            ->queue(new SendReport($body));
 
             $deptBodys = [
                 ['email' => 'ireoluwasoetan@gmail.com', 'data' => ['name' => 'Ireoluwa Soetan', 'dept' => 'Avalanche', 'co_members' => $this->co_aval, 'co_early' => $this->earl_aval, 'co_late' => $this->late_aval, 'co_absent' => $this->abs_aval, 'link' => url('/attendance/report/Avalanche/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')), 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')]],
@@ -485,11 +487,12 @@ class DatedDashboardComponent extends Component
                 'link_absent' => url('/attendance/absentreport/' . $this->date),
                 'date' => $this->date,
             ];
+            $list = ['abc@test.com', 'xyz@test.com'];
 
-            Mail::to('cozacorporateph@gmail.com')
-                ->cc('nneomaudeariry@gmail.com')
-                ->bcc('davemoses3@gmail.com')
-                ->queue(new SendReport($body));
+            Mail::to('davemoses3@gmail.com')
+            ->cc($list)
+            ->bcc('davemoses3@gmail.com')
+            ->queue(new SendReport($body));
 
                 $deptBodys = [
                     ['email' => 'ireoluwasoetan@gmail.com', 'data' => ['name' => 'Ireoluwa Soetan', 'dept' => 'Avalanche', 'co_members' => $this->co_aval, 'co_early' => $this->earl_aval, 'co_late' => $this->late_aval, 'co_absent' => $this->abs_aval, 'link' => url('/attendance/report/Avalanche/' . Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')), 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d')]],
