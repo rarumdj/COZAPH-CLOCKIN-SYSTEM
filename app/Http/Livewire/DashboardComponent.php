@@ -475,8 +475,7 @@ class DashboardComponent extends Component
                 Mail::to($deptBody['email'])
                     ->queue(new DeptReport($deptBody['data']));
             }
-            // $this->emit('alert', ['type' => 'success', 'message' => 'Mail sent successfully.']);
-            
+            $this->emit('alert', ['type' => 'success', 'message' => 'Mail sent successfully.']);
         } elseif ($this->date) {
             $body = [
                 'type' => 'dashboard',
@@ -533,7 +532,7 @@ class DashboardComponent extends Component
                 Mail::to($deptBody['email'])
                     ->queue(new DeptReport($deptBody['data']));
             }
-            // $this->emit('alert', ['type' => 'success', 'message' => 'Mail sent successfully.']);
+            $this->emit('alert', ['type' => 'success', 'message' => 'Mail sent successfully.']);
         }
     }
     public function render()
