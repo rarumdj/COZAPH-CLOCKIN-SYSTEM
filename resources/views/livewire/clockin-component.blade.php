@@ -25,7 +25,7 @@
                                         <a href="#" class="btn btn-sm btn-danger" type="button"
                                             onclick="confirm('Are you sure you want to close today\'s attendance?') || event.stopImmediatePropagation()"
                                             wire:click="closeAttendance()">
-                                            Close
+                                            Close Attendance
                                         </a>
                                     </div>
                                 </div>

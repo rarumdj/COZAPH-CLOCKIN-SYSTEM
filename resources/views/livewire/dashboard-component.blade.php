@@ -14,7 +14,7 @@
                                 <a href="#" class="form-control bg-info text-white" type="button"
                                     onclick="confirm('Are you sure you want to send these report?') || event.stopImmediatePropagation()"
                                     wire:click="sendReport()">
-                                    Send Report
+                                    Send attendance report
                                 </a>
                             </div>
                         </div>

@@ -431,9 +431,9 @@ class DatedDashboardComponent extends Component
                 'date' => Carbon::createFromFormat('Y-m-d H:i:s', $this->oldDate)->format('Y-m-d'),
             ];
 
-            $list = ['abc@test.com', 'xyz@test.com'];
-
-            Mail::to('davemoses3@gmail.com')
+            $list = ['qccozaphc@gmail.com','cozaphmande@gmail.com','cozacorporateph@gmail.com'];       
+            
+            Mail::to('cozaph.how@gmail.com')
             ->cc($list)
             ->bcc('davemoses3@gmail.com')
             ->queue(new SendReport($body));
@@ -487,9 +487,10 @@ class DatedDashboardComponent extends Component
                 'link_absent' => url('/attendance/absentreport/' . $this->date),
                 'date' => $this->date,
             ];
-            $list = ['abc@test.com', 'xyz@test.com'];
 
-            Mail::to('davemoses3@gmail.com')
+            $list = ['qccozaphc@gmail.com','cozaphmande@gmail.com','cozacorporateph@gmail.com'];       
+            
+            Mail::to('cozaph.how@gmail.com')
             ->cc($list)
             ->bcc('davemoses3@gmail.com')
             ->queue(new SendReport($body));

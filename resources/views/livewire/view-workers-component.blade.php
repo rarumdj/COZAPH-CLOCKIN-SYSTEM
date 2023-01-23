@@ -57,6 +57,7 @@
                                                     <option value="Welfare">Welfare</option>
                                                     <option value="COZA Transfer Service">COZA Transfer Service</option>
                                                     <option value="Child Care">Child Care</option>
+                                                    <option value="COZA Corporate">COZA Corporate</option>
                                                     <option value="Decoration">Decoration</option>
                                                     <option value="Drama">Drama</option>
                                                     <option value="Media">Media</option>
