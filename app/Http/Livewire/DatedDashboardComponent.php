@@ -461,7 +461,7 @@ class DatedDashboardComponent extends Component
             $list = ['qccozaphc@gmail.com','cozaphmande@gmail.com','cozacorporateph@gmail.com'];       
             
             Mail::to('cozaph.how@gmail.com')
-            // ->cc($list)
+            ->cc($list)
             ->bcc('davemoses3@gmail.com')
             ->queue(new SendReport($body));
 
